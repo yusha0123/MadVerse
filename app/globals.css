@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-.heading {
-  padding: 1rem 0;
-  text-align: center;
-}
-
 ::-webkit-scrollbar {
   width: 5px;
   height: 3px;

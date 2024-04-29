@@ -53,7 +53,7 @@ const PokedexTable = ({ pokemonData }: PokedexTableProps) => {
     },
   }));
 
-  if (!pokemonData.data || pokemonData.data.length === 0) return null;
+  if (!pokemonData?.data || pokemonData?.data.length === 0) return null;
 
   const startIndex = page * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
@@ -97,7 +97,7 @@ const PokedexTable = ({ pokemonData }: PokedexTableProps) => {
           </TableBody>
         </Table>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10, 15, 20, 25]}
           component="div"
           count={pokemonData?.data?.length || 0}
           rowsPerPage={rowsPerPage}
