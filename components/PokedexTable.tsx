@@ -1,11 +1,8 @@
 import {
   Grow,
   Paper,
-  styled,
   Table,
   TableBody,
-  TableCell,
-  tableCellClasses,
   TableContainer,
   TableHead,
   TablePagination,
@@ -14,6 +11,8 @@ import {
 import { Pokemon } from "@prisma/client";
 import { UseTRPCQueryResult } from "@trpc/react-query/shared";
 import React, { useState } from "react";
+import { StyledTableCell, StyledTableRow } from "./Customized";
+import PokemonRow from "./PokemonRow";
 
 type PokedexTableProps = {
   pokemonData: UseTRPCQueryResult<Pokemon[], any>;
@@ -33,25 +32,6 @@ const PokedexTable = ({ pokemonData }: PokedexTableProps) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 15,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
 
   if (!pokemonData?.data || pokemonData?.data.length === 0) return null;
 
@@ -76,16 +56,7 @@ const PokedexTable = ({ pokemonData }: PokedexTableProps) => {
           </TableHead>
           <TableBody>
             {slicedData.map((pokemon) => (
-              <StyledTableRow key={pokemon.id}>
-                <StyledTableCell align="center">{pokemon.id}</StyledTableCell>
-                <StyledTableCell align="center">{pokemon.name}</StyledTableCell>
-                <StyledTableCell align="center">
-                  {pokemon.types.join(", ")}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {pokemon.sprite}
-                </StyledTableCell>
-              </StyledTableRow>
+              <PokemonRow key={pokemon.id} pokemon={pokemon} />
             ))}
             {slicedData.length === 0 && (
               <StyledTableRow>
