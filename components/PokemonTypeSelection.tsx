@@ -1,7 +1,6 @@
 "use client";
 
-import { Box, Paper, Select, MenuItem, SelectChangeEvent } from "@mui/material";
-import Image from "next/image";
+import { MenuItem, Paper, Select, SelectChangeEvent } from "@mui/material";
 
 type PokemonTypeSelectionProps = {
   selectedType: string | undefined;
@@ -30,13 +29,9 @@ const PokemonTypeSelection = ({
         alignItems: "center",
       }}
     >
-      <Image
-        src={"/images/pokemon-icon.svg"}
-        alt="pokemon-icon"
-        width={200}
-        height={50}
-      />
-      <h1>Pokedex</h1>
+      <h3 className="text-2xl font-bold text-center my-2">
+        Search Pokemons By Type
+      </h3>
       <Select
         value={selectedType || "all"}
         onChange={handleTypeChange}

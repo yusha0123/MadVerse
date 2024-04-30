@@ -1,6 +1,7 @@
 "use client";
 
 import { StyledTableCell, StyledTableRow } from "@/components/Customized";
+import Loading from "@/components/Loading";
 import PokemonRow from "@/components/PokemonRow";
 import { trpc } from "@/utils/trpc";
 import {
@@ -36,6 +37,9 @@ const Part1Page = () => {
           marginY: "2rem",
         }}
       >
+        <h3 className="text-2xl font-bold text-center my-2">
+          Search Pokemon By Name
+        </h3>
         <TextField
           fullWidth
           value={pokemonName}
@@ -72,21 +76,7 @@ const Part1Page = () => {
           </Table>
         </TableContainer>
       )}
-      {pokemon?.isLoading && (
-        <Box
-          position="fixed"
-          top={0}
-          left={0}
-          width="100%"
-          height="100%"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          zIndex={9999}
-        >
-          <CircularProgress />
-        </Box>
-      )}
+      {pokemon?.isLoading && <Loading />}
     </main>
   );
 };
